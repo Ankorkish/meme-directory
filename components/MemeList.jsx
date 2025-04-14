@@ -24,17 +24,18 @@ export default function MemeCardList() {
       {memes.map((meme) => (
         <Card
           key={meme.id}
-          className="shadow-md hover:shadow-lg transition-shadow"
+          className="shadow-md hover:shadow-lg transition-shadow h-full flex flex-col"
         >
           <CardHeader className="pb-0 pt-3 px-4">
             <h3 className="font-bold text-xl truncate">{meme.name}</h3>
           </CardHeader>
-          <CardBody className="p-3">
-            <div className="relative overflow-hidden rounded-lg">
+          <CardBody className="p-3 flex-grow">
+            <div className="relative overflow-hidden rounded-lg h-full">
               <Image
                 alt={meme.name}
-                className="object-cover w-full h-60 rounded-lg"
+                className="object-cover w-full h-full rounded-lg"
                 src={meme.imgLink}
+                style={{ aspectRatio: "1/1", objectFit: "cover" }}
               />
             </div>
           </CardBody>

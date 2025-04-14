@@ -54,9 +54,16 @@ export default function MemeTable() {
   };
 
   const handleLikesChange = (e) => {
-    const likesValue = parseInt(e.target.value, 10) || 0;
-    setEditMeme({ ...editMeme, likes: likesValue });
-    setLikesError(validateLikes(likesValue));
+    const newValue = e.target.value;
+
+    if (newValue === "" || newValue === "0") {
+      setEditMeme({ ...editMeme, likes: 0 });
+      setLikesError(validateLikes(0));
+    } else {
+      const likesValue = parseInt(newValue, 10) || 0;
+      setEditMeme({ ...editMeme, likes: likesValue });
+      setLikesError(validateLikes(likesValue));
+    }
   };
 
   const handleSave = (onClose) => {
@@ -137,7 +144,7 @@ export default function MemeTable() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1"  htmlFor="name">Name (3-100 characters)</label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="name">Name (3-100 characters)</label>
                     <Input
                       value={editMeme?.name || ""}
                       onChange={handleNameChange}
@@ -148,7 +155,7 @@ export default function MemeTable() {
                     {nameError && <p className="text-red-500 text-sm mt-1">{nameError}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1"  htmlFor="url">Image URL (JPG only)</label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="url">Image URL (JPG only)</label>
                     <Input
                       value={editMeme?.imgLink || ""}
                       onChange={handleUrlChange}
@@ -159,14 +166,15 @@ export default function MemeTable() {
                     {urlError && <p className="text-red-500 text-sm mt-1">{urlError}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1"  htmlFor="likes">Likes (max 99)</label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="likes">Likes (max 99)</label>
                     <Input
                       type="number"
-                      value={editMeme?.likes || 0}
+                      value={editMeme?.likes === 0 ? "" : editMeme?.likes}
                       onChange={handleLikesChange}
                       name={"likes"}
                       max={99}
                       min={0}
+                      placeholder="0"
                       isInvalid={!!likesError}
                     />
                     {likesError && <p className="text-red-500 text-sm mt-1">{likesError}</p>}
