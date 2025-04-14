@@ -128,39 +128,43 @@ export default function MemeTable() {
               <ModalBody>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">ID</label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="id">ID</label>
                     <Input
                       value={editMeme?.id || ""}
                       readOnly={true}
+                      name={"id"}
                       isDisabled={true}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Name (3-100 characters)</label>
+                    <label className="block text-sm font-medium mb-1"  htmlFor="name">Name (3-100 characters)</label>
                     <Input
                       value={editMeme?.name || ""}
                       onChange={handleNameChange}
                       placeholder="Meme name"
+                      name={"name"}
                       isInvalid={!!nameError}
                     />
                     {nameError && <p className="text-red-500 text-sm mt-1">{nameError}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Image URL (JPG only)</label>
+                    <label className="block text-sm font-medium mb-1"  htmlFor="url">Image URL (JPG only)</label>
                     <Input
                       value={editMeme?.imgLink || ""}
                       onChange={handleUrlChange}
+                      name={"url"}
                       placeholder="https://example.com/image.jpg"
                       isInvalid={!!urlError}
                     />
                     {urlError && <p className="text-red-500 text-sm mt-1">{urlError}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Likes (max 99)</label>
+                    <label className="block text-sm font-medium mb-1"  htmlFor="likes">Likes (max 99)</label>
                     <Input
                       type="number"
                       value={editMeme?.likes || 0}
                       onChange={handleLikesChange}
+                      name={"likes"}
                       max={99}
                       min={0}
                       isInvalid={!!likesError}

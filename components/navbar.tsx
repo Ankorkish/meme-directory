@@ -76,7 +76,7 @@ export const Navbar = () => {
                 "w-full text-lg py-2 data-[active=true]:text-primary data-[active=true]:font-medium",
               )}
               href={item.href}
-              onClick={closeMenu} 
+              onClick={closeMenu}
             >
               {item.label}
             </NextLink>
